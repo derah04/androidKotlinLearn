@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "902522893664",
+    "firebase_url": "https://androidtest-c0d64.firebaseio.com",
+    "project_id": "androidtest-c0d64",
+    "storage_bucket": "androidtest-c0d64.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:902522893664:android:a99c7aa56b036494",
+        "android_client_info": {
+          "package_name": "com.example.igrwijaya.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "902522893664-jo97vc136b6vke88tbbi2gtd5f95pp5r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ014HtqJlcestPCjc4vh0EDXJ9pJpX9c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
