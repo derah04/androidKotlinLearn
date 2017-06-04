@@ -1,0 +1,32 @@
+{
+  "listing" : {
+    "kode_1":{
+      "name" : "Hore",
+      "desc" : "Lorem ipsum"
+    },
+    "kode_2":{
+      "name" : "Hore 2",
+      "desc" : "Lorem ipsum"
+    },
+    "kode_3":{
+      "name" : "Hore 3",
+      "desc" : "Lorem ipsum"
+    },
+    "kode_4":{
+      "name" : "Hore 4",
+      "desc" : "Lorem ipsum"
+    }
+  },
+
+  "users" : {
+    "ULrWkWEoC6a40RWsPnQUHZrWiIY2" : {
+      "I Gede Rahmat Wijaya" : "haha",
+      "name" : "I Gede Rahmat Wijaya"
+    },
+    "hore" : "hore",
+    "huawei" : "huawei",
+    "vCe8mD7W5bQsSJW9Jt4IufqGNCn2" : {
+      "name" : "I Gede Rahmat Wijaya"
+    }
+  }
+}

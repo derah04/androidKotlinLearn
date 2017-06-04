@@ -8,15 +8,15 @@ import com.google.firebase.database.Exclude
  */
 class FirebaseUserAdapter {
 
-    var uid : String? = null
+    var desc : String? = null
     var name : String? = null
 
     fun Post() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
     }
 
-    fun Post(id: String, nama : String) {
-        this.uid = id
+    fun Post(desc: String, nama : String) {
+        this.desc = desc
         this.name = nama
     }
 
@@ -26,7 +26,7 @@ class FirebaseUserAdapter {
     fun toMap(): Map<String, Any> {
 
         val result = HashMap<String, Any>()
-        result.put("uid", uid!!)
+        result.put("desc", desc!!)
         result.put("nama", name!!)
 
         return result

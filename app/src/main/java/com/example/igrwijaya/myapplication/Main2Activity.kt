@@ -21,6 +21,7 @@ import com.google.android.gms.common.api.GoogleApiClient
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
 import android.util.Log
+import android.widget.ProgressBar
 import java.net.URL
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DataSnapshot
@@ -42,12 +43,18 @@ class Main2Activity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
     var mGoogleApiClient: GoogleApiClient? = null
     var mUsername : TextView? = null
     var mPhoto : ImageView? = null
+    var myList : RecyclerView? = null
+    val loading : ProgressBar? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
+
+        val loading = findViewById(R.id.progress) as ProgressBar
+
+        loading.progress;
 
         mUsername = findViewById(R.id.namaUser) as TextView
         mPhoto = findViewById(R.id.userPic) as ImageView
@@ -69,16 +76,11 @@ class Main2Activity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
             mUsername!!.text = "None"
         }
 
-        val myList = findViewById(R.id.dataList) as RecyclerView
-        myList.setHasFixedSize(true)
+        myList = findViewById(R.id.dataList) as RecyclerView
+        myList!!.setHasFixedSize(true)
 
-        myList.layoutManager = LinearLayoutManager(this)
+        myList!!.layoutManager = LinearLayoutManager(this)
 
-        val data = ArrayList<String>()
-        data.add("hore")
-        data.add("hore lagi")
-
-        myList.adapter = MyRecyclerViewAdapter(this,data)
         this.loginStatus()
         this.userList()
 
@@ -86,8 +88,9 @@ class Main2Activity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
 
     fun firebaseLoad(userId : String, name : String){
         val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("listing")
+        val myRef = database.getReference("users")
 
+        //nyimpen k firebase
         myRef.child(userId).child("name").setValue(name)
     }
 
@@ -114,9 +117,16 @@ class Main2Activity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
         FirebaseDatabase.getInstance().getReference("listing")
                 .addValueEventListener(object : ValueEventListener {
                     override fun onDataChange(dataSnapshot: DataSnapshot) {
-                        // Get user information
-                        val user = dataSnapshot.getValue(FirebaseUserAdapter::class.java)
-                        Log.d("User",user.name.toString())
+
+                        val data = ArrayList<String>()
+
+                        for (dataSnapshots in dataSnapshot.children) {
+                            val list = dataSnapshots.getValue(FirebaseUserAdapter::class.java)
+                            Log.d("User",list.name.toString())
+                            data.add(list.name.toString())
+                        }
+
+                        myList!!.adapter = MyRecyclerViewAdapter(this@Main2Activity,data)
 
                     }
 
