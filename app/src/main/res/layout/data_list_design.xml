@@ -3,8 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/userAvatar"
+        android:layout_width="100dp"
+        android:contentDescription="user profile"
+        android:layout_height="100dp" />
+
     <TextView
-        android:id="@+id/listText"
+        android:id="@+id/userName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 </LinearLayout>

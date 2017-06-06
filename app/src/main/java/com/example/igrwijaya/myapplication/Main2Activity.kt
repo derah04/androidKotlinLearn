@@ -20,8 +20,11 @@ import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.api.GoogleApiClient
 import android.graphics.BitmapFactory
 import android.graphics.Bitmap
+import android.os.Build
 import android.util.Log
+import android.view.View
 import android.widget.ProgressBar
+import com.example.igrwijaya.myapplication.user.adapter.UserList
 import java.net.URL
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DataSnapshot
@@ -44,7 +47,8 @@ class Main2Activity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
     var mUsername : TextView? = null
     var mPhoto : ImageView? = null
     var myList : RecyclerView? = null
-    val loading : ProgressBar? = null
+    var loading : ProgressBar? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,9 +56,8 @@ class Main2Activity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
         val toolbar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(toolbar)
 
-        val loading = findViewById(R.id.progress) as ProgressBar
+        loading = findViewById(R.id.progressBarView) as ProgressBar
 
-        loading.progress;
 
         mUsername = findViewById(R.id.namaUser) as TextView
         mPhoto = findViewById(R.id.userPic) as ImageView
@@ -123,10 +126,14 @@ class Main2Activity : AppCompatActivity(), GoogleApiClient.OnConnectionFailedLis
                         for (dataSnapshots in dataSnapshot.children) {
                             val list = dataSnapshots.getValue(FirebaseUserAdapter::class.java)
                             Log.d("User",list.name.toString())
+                            val user = UserList()
+                            user.userList(list.name.toString(),list.desc.toString())
+
                             data.add(list.name.toString())
                         }
 
-                        myList!!.adapter = MyRecyclerViewAdapter(this@Main2Activity,data)
+                        myList!!.adapter = MyRecyclerViewAdapter()
+                        loading?.visibility = View.GONE
 
                     }
 
